@@ -18,7 +18,7 @@ alias df='df -h'
 alias grep='grep --color'
 alias sudo='sudo '
 
-plugins=(git brew colored-man fabric git-extras git-flow mercurial node npm)
+plugins=(git brew colored-man fabric git-extras git-flow mercurial node npm virtualenv virtualenvwrapper svn)
 
 source $ZSH/oh-my-zsh.sh
 

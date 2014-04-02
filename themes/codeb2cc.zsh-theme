@@ -8,7 +8,10 @@ function precmd {
     PR_FILLBAR=""
     PR_PWDLEN=""
 
-    local promptsize=${#${(%):- %n@%m:%l -}}
+    PR_ENV=$(virtualenv_prompt_info)
+    PR_VCS="$(git_prompt_info)$(hg_prompt_info)$(svn_prompt_info)"
+
+    local promptsize=${#${(%):- %n@%m:%l $PR_VCS -}}
     local pwdsize=${#${(%):-%~}}
 
     if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
@@ -17,10 +20,6 @@ function precmd {
     PR_BARCHAR=" "
     PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_BARCHAR}.)}"
     fi
-
-    PR_GIT=$(git_prompt_info)
-    PR_HG=$(hg_prompt_info)
-    PR_ENV=$(virtualenv_prompt_info)
 }
 
 setprompt () {
@@ -39,11 +38,10 @@ setprompt () {
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
 
-    PROMPT='$PR_GREEN┌ %(!.%SROOT%s.%n)$PR_GREEN@%m:%l $PR_CYAN\
+    PROMPT='$PR_GREEN┌ %(!.%SROOT%s.%n)$PR_GREEN@%m:%l $PR_YELLOW$PR_VCS $PR_CYAN\
 ${(e)PR_FILLBAR}$PR_CYAN%$PR_PWDLEN<...<%~%<<$PR_CYAN\
 
 $PR_GREEN└ %D{%H:%M:%S}\
-$PR_YELLOW$PR_GIT$PR_HG\
 %(?.. $PR_LIGHT_RED%?)\
 $PR_LIGHT_CYAN %(!.$PR_RED.$PR_WHITE)%# $PR_NO_COLOUR'
 
