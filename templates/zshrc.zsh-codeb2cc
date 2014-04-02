@@ -1,0 +1,36 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/Repo/oh-my-zsh
+
+ZSH_THEME="codeb2cc"
+CASE_SENSITIVE="true"
+
+# Example aliases
+alias vi='vim'
+alias ls='ls -G'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias c='clear'
+alias rm='rm -i'
+alias mv='mv -i'
+alias du='du -a -h --max-depth=1'
+alias df='df -h'
+alias grep='grep --color'
+alias sudo='sudo '
+
+plugins=(git brew colored-man fabric git-extras git-flow mercurial node npm)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# Virtualenvwrapper setting
+source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/Env
+
+# Golang
+export GOPATH=$HOME/Go
+
+export LANG=cn_ZH.UTF-8
+export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:$PATH
+
