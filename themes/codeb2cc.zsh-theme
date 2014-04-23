@@ -9,7 +9,7 @@ function precmd {
     PR_PWDLEN=""
 
     PR_ENV=$(virtualenv_prompt_info)
-    PR_VCS="$(git_prompt_info)$(hg_prompt_info)$(svn_prompt_info)"
+    PR_VCS="$(git_prompt_info)$(hg_prompt_info)"
 
     local promptsize=${#${(%):- %n@%m:%l $PR_VCS -}}
     local pwdsize=${#${(%):-%~}}
