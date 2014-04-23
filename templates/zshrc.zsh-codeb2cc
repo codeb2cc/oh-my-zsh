@@ -31,6 +31,6 @@ export WORKON_HOME=$HOME/Env
 # Golang
 export GOPATH=$HOME/Go
 
-export LANG=cn_ZH.UTF-8
-export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:$PATH
+export LANG=zh_CN.UTF-8
+export PATH=$GOPATH/bin:$HOME/local/bin:$HOME/bin:/usr/local/bin:$PATH
 
