@@ -22,6 +22,14 @@ function precmd {
     fi
 }
 
+smiley () { 
+    if [ $? -eq 0 ]; then
+        echo -e "\e[1;32m:\\051\e[0;32m"
+    else
+        echo -e "\e[1;31m:\\050\e[0;31m"
+    fi
+}
+
 setprompt () {
     # Need this so the prompt will work.
     setopt prompt_subst
@@ -42,7 +50,7 @@ setprompt () {
 ${(e)PR_FILLBAR}$PR_CYAN%$PR_PWDLEN<...<%~%<<$PR_CYAN\
 
 $PR_GREEN└ %D{%H:%M:%S}\
-%(?.. $PR_LIGHT_RED%?)\
+ $(smiley)%(?.. $PR_LIGHT_RED%?)\
 $PR_LIGHT_CYAN %(!.$PR_RED.$PR_WHITE)%# $PR_NO_COLOUR'
 
     RPROMPT=' $PR_MAGENTA$PR_ENV$PR_CYAN$PR_NO_COLOUR'
