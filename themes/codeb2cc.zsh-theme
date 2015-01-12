@@ -11,7 +11,7 @@ function precmd {
     PR_ENV=$(virtualenv_prompt_info)
     PR_VCS="$(git_prompt_info)$(hg_prompt_info)"
 
-    local promptsize=${#${(%):- %n@%m:%l $PR_VCS -}}
+    local promptsize=${#${(%):- %n@%m:%l $PR_ENV $PR_VCS -}}
     local pwdsize=${#${(%):-%~}}
 
     if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
@@ -46,14 +46,14 @@ setprompt () {
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
 
-    PROMPT='$PR_GREEN┌ %(!.%SROOT%s.%n)$PR_GREEN@%m:%l $PR_YELLOW$PR_VCS $PR_CYAN\
-${(e)PR_FILLBAR}$PR_CYAN%$PR_PWDLEN<...<%~%<<$PR_CYAN\
+    PROMPT='$PR_GREEN┌ %(!.%SROOT%s.%n)$PR_GREEN@%m:%l $PR_MAGENTA$PR_ENV $PR_YELLOW$PR_VCS\
+$PR_CYAN${(e)PR_FILLBAR}$PR_CYAN%$PR_PWDLEN<...<%~%<<$PR_CYAN\
 
 $PR_GREEN└ %D{%H:%M:%S}\
  $(smiley)%(?.. $PR_LIGHT_RED%?)\
 $PR_LIGHT_CYAN %(!.$PR_RED.$PR_WHITE)%# $PR_NO_COLOUR'
 
-    RPROMPT=' $PR_MAGENTA$PR_ENV$PR_CYAN$PR_NO_COLOUR'
+    RPROMPT=' $PR_NO_COLOUR'
 
     PS2='($PR_LIGHT_GREEN%_$PR_CYAN)$PR_NO_COLOUR '
 }
